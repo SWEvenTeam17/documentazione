@@ -5,10 +5,6 @@ on:
     branches:
       - master
 
-permissions:
-  contents: read
-  actions: write
-
 jobs:
   dispatch-event:
     runs-on: ubuntu-latest
@@ -16,13 +12,13 @@ jobs:
     steps:
       - name: Send Repository Dispatch Event
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           TARGET_REPO: "SWEvenTeam17/SWEvenTeam17.github.io"
           EVENT_TYPE: "sync-folder"
 
         run: |
           curl -X POST -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer $GITHUB_TOKEN" \
+          -H "Authorization: Bearer $PERSONAL_ACCESS_TOKEN" \
           https://api.github.com/repos/$TARGET_REPO/dispatches \
           -d '{"event_type": "'"$EVENT_TYPE"'"}'
 
