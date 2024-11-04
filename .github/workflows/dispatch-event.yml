@@ -21,6 +21,3 @@ jobs:
           -H "Authorization: Bearer $PERSONAL_ACCESS_TOKEN" \
           https://api.github.com/repos/$TARGET_REPO/dispatches \
           -d '{"event_type": "'"$EVENT_TYPE"'"}'
-
-      # - name: Check Dispatch Status
-      #   run: echo "Repository Dispatch event sent to $TARGET_REPO"
